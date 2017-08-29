@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mgx.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.mgx.pojo.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="token" property="token" jdbcType="VARCHAR"/>
+        <result column="platform" property="platform" jdbcType="VARCHAR"/>
+        <result column="loginDate" property="logindate" jdbcType="TIMESTAMP"/>
+        <result column="createDate" property="createdate" jdbcType="TIMESTAMP"/>
+        <result column="pushId" property="pushid" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="INTEGER"/>
+        <result column="pushDate" property="pushdate" jdbcType="TIMESTAMP"/>
+        <result column="img" property="img" jdbcType="VARCHAR"/>
+        <result column="chargeId" property="chargeid" jdbcType="INTEGER"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, nickname, phone, password, token, platform, loginDate, createDate, pushId, sex, 
+    pushDate, img, chargeId
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.mgx.pojo.User">
+    insert into user (id, nickname, phone, 
+      password, token, platform, 
+      loginDate, createDate, pushId, 
+      sex, pushDate, img, 
+      chargeId)
+    values (#{id,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, #{platform,jdbcType=VARCHAR}, 
+      #{logindate,jdbcType=TIMESTAMP}, #{createdate,jdbcType=TIMESTAMP}, #{pushid,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{pushdate,jdbcType=TIMESTAMP}, #{img,jdbcType=VARCHAR}, 
+      #{chargeid,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.mgx.pojo.User">
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="nickname != null">
+                nickname,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="password != null">
+                password,
+            </if>
+            <if test="token != null">
+                token,
+            </if>
+            <if test="platform != null">
+                platform,
+            </if>
+            <if test="logindate != null">
+                loginDate,
+            </if>
+            <if test="createdate != null">
+                createDate,
+            </if>
+            <if test="pushid != null">
+                pushId,
+            </if>
+            <if test="sex != null">
+                sex,
+            </if>
+            <if test="pushdate != null">
+                pushDate,
+            </if>
+            <if test="img != null">
+                img,
+            </if>
+            <if test="chargeid != null">
+                chargeId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="nickname != null">
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+                #{token,jdbcType=VARCHAR},
+            </if>
+            <if test="platform != null">
+                #{platform,jdbcType=VARCHAR},
+            </if>
+            <if test="logindate != null">
+                #{logindate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdate != null">
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pushid != null">
+                #{pushid,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="pushdate != null">
+                #{pushdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="img != null">
+                #{img,jdbcType=VARCHAR},
+            </if>
+            <if test="chargeid != null">
+                #{chargeid,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mgx.pojo.User">
+        update user
+        <set>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="token != null">
+                token = #{token,jdbcType=VARCHAR},
+            </if>
+            <if test="platform != null">
+                platform = #{platform,jdbcType=VARCHAR},
+            </if>
+            <if test="logindate != null">
+                loginDate = #{logindate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createdate != null">
+                createDate = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="pushid != null">
+                pushId = #{pushid,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="pushdate != null">
+                pushDate = #{pushdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="img != null">
+                img = #{img,jdbcType=VARCHAR},
+            </if>
+            <if test="chargeid != null">
+                chargeId = #{chargeid,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mgx.pojo.User">
+    update user
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      platform = #{platform,jdbcType=VARCHAR},
+      loginDate = #{logindate,jdbcType=TIMESTAMP},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      pushId = #{pushid,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      pushDate = #{pushdate,jdbcType=TIMESTAMP},
+      img = #{img,jdbcType=VARCHAR},
+      chargeId = #{chargeid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
